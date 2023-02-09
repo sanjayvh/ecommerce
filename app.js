@@ -5,6 +5,7 @@ const categoryRoutes = require("./routes/category");
 const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
+const roleRoutes = require("./routes/role");
 
 const sequelize = require("./util/database");
 const Product = require("./model/product");
@@ -21,14 +22,11 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use("/home", (req, res) => {
-  res.send("Home Page 1");
-})
-
 app.use(categoryRoutes);
 app.use(authRoutes);
 app.use(productRoutes);
 app.use(cartRoutes);
+app.use(roleRoutes);
 
 app.use((err, req, res, next) => {
   res.status(err.statusCode || 500).json({
